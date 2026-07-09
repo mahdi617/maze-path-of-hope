@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>هزارتوی مسیر امید</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="maze-page">
+    <section class="hero-card" aria-label="معرفی بازی هزارتو">
+      <div class="hero-copy">
+        <span class="project-badge">پروژه پایانی طراحی الگوریتم</span>
+        <h1>هزارتوی مسیر امید</h1>
+        <p>یک بازی تعاملی برای ساخت هزارتوی تصادفی، حرکت بازیکن، بازگشت حرکت و دریافت راهنمایی هوشمند.</p>
+      </div>
+      <div class="state-box">
+        <span>وضعیت بازی</span>
+        <strong id="gameState">آماده</strong>
+      </div>
+    </section>
+
+    <section class="dashboard-grid">
+      <section class="board-card" aria-label="صفحه اصلی بازی">
+        <div class="toolbar-card" aria-label="تنظیمات و کنترل‌های اصلی">
+          <label class="field-card" for="mazeSize">
+            <span>اندازه هزارتو</span>
+            <input id="mazeSize" type="number" min="5" max="40" value="16" inputmode="numeric">
+            <small id="sizePreview">۱۶ × ۱۶ خانه</small>
+          </label>
+
+          <div class="action-row">
+            <button id="newMazeBtn" class="primary-action" type="button">ساخت مسیر تازه</button>
+            <button id="undoBtn" class="soft-action" type="button">بازگشت</button>
+            <button id="hintBtn" class="soft-action" type="button">راهنمایی</button>
+          </div>
+        </div>
+
+        <div class="canvas-frame">
+          <canvas id="mazeCanvas" width="900" height="900" aria-label="نمای تصویری هزارتو"></canvas>
+        </div>
+
+        <div class="notice-card" aria-live="polite">
+          <span class="notice-dot"></span>
+          <p id="message">اندازه هزارتو را انتخاب کنید، مسیر تازه بسازید و با کلیدهای حرکتی بازی کنید.</p>
+        </div>
+      </section>
+
+      <aside class="side-stack" aria-label="اطلاعات و راهنمای بازی">
+        <section class="mini-panel stats-panel">
+          <div class="panel-heading">
+            <span>آمار لحظه‌ای</span>
+            <small>در همین دور بازی</small>
+          </div>
+          <dl class="stat-grid">
+            <div><dt>حرکت</dt><dd id="moveCount">۰</dd></div>
+            <div><dt>بازگشت</dt><dd id="undoCount">۰</dd></div>
+            <div><dt>راهنمایی</dt><dd id="hintCount">۰</dd></div>
+          </dl>
+        </section>
+
+        <section class="mini-panel route-panel">
+          <div class="panel-heading">
+            <span>کلیدهای بازی</span>
+            <small>کیبورد یا دکمه‌های لمسی</small>
+          </div>
+          <div class="key-list">
+            <div><kbd>W</kbd><kbd>↑</kbd><span>بالا</span></div>
+            <div><kbd>A</kbd><kbd>←</kbd><span>چپ</span></div>
+            <div><kbd>S</kbd><kbd>↓</kbd><span>پایین</span></div>
+            <div><kbd>D</kbd><kbd>→</kbd><span>راست</span></div>
+            <div><kbd>Space</kbd><span>راهنمایی</span></div>
+            <div><kbd>U</kbd><span>بازگشت حرکت</span></div>
+          </div>
+        </section>
+
+        <section class="mini-panel touch-panel" aria-label="کنترل لمسی">
+          <div class="panel-heading">
+            <span>کنترل سریع</span>
+            <small>برای تبلت</small>
+          </div>
+          <div class="touch-pad">
+            <button type="button" data-move="north" aria-label="حرکت به بالا">↑</button>
+            <button type="button" data-move="west" aria-label="حرکت به چپ">←</button>
+            <button type="button" data-game-action="hint" aria-label="راهنمایی">؟</button>
+            <button type="button" data-move="east" aria-label="حرکت به راست">→</button>
+            <button type="button" data-move="south" aria-label="حرکت به پایین">↓</button>
+          </div>
+        </section>
+
+        <section class="mini-panel legend-panel">
+          <div class="panel-heading">
+            <span>راهنمای رنگ‌ها</span>
+            <small>شناخت خانه‌ها</small>
+          </div>
+          <div class="legend-list">
+            <span><i class="legend-dot start"></i>شروع</span>
+            <span><i class="legend-dot finish"></i>مقصد</span>
+            <span><i class="legend-dot player"></i>بازیکن</span>
+            <span><i class="legend-dot crossroad"></i>چندراهی</span>
+            <span><i class="legend-dot deadend"></i>بن‌بست</span>
+            <span><i class="legend-dot hint"></i>مسیر پیشنهادی</span>
+          </div>
+        </section>
+      </aside>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
